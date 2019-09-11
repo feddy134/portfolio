@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Fedrick Nishant</title>
+    <title>Blog</title>
 
 
 
@@ -43,43 +42,32 @@
           <a class="nav-item nav-link" href="https://www.facebook.com/nishant.fedrick">Facebook</a>
           <a class="nav-item nav-link" href="https://www.youtube.com/channel/UCNyWogtyzNw7qXZBCc9xa-w">Youtube</a>
           <a class="nav-item nav-link" href="https://drive.google.com/open?id=1Kk4qBaKvxjnZGc2fWJX7usy6L15z1BkJ">Resume</a>
-          <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+          <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
         </div>
       </div>
     </nav>
 </header>
 
 <main role="main">
+  <div class="container">
+    <h1 class="text-center ">This is my Blog</h1>
+    <h3>Lastest posts</h3>
+    <hr>
+    {% for b in allblog.all %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Hi, I'm Fedrick</h1>
-      <p class="lead text-muted">Hello there, I love to build websites using Django.</p>
-      <p>
-        <a href="mailto:fednish@gmail.com" class="btn btn-primary my-2">Email me</a>
-      </p>
-      <img src="https://s3-ap-southeast-1.amazonaws.com/dniimages/images/e0973151-8682-4bdb-8856-923e0c0fa499/1478518810203" height="250" alt="">
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-        {% for j in job.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ j.image.url }}" alt="">
-            <div class="card-body">
-              <p class="card-text">{{ j.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+        <h3 class="mb-0">{{ b.title }}</h3>
+        <div class="mb-1 text-muted">{{ b.pub_date }}</div>
+        <p class="card-text mb-auto">{{ b.body }}</p>
 
       </div>
+      <div class="col-auto d-none d-lg-block">
+        <img class="img-fluid img-thumbnail rounded mx-auto d-block"  src="{{ b.image.url }}" alt="" height="100" width="200">
+      </div>
     </div>
+
+    {% endfor %}
   </div>
 
 </main>
